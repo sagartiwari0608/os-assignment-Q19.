@@ -1,36 +1,36 @@
 #include<stdio.h>
-#include<conio.h>
-#define STUDENT_NO 10
- 
-void main()
-{
-    int s[STUDENT_NO];
-    int i, j,max_no, temp;
- 
-    printf("Enter the value of num \n");
-    scanf("%d",&max_no);
-    printf("Enter the elements one by one \n");
-    for (i = 0; i < num; i++)
-    {
-        ptintf("enter the number of gifts puchased by s%d th student",i+1);
-        scanf("%d",&s[i]);
-    }
-    
-    for (i = 0; i <max_no; i++)
-    {
-        for (j = 0; j < (max_no - i - 1); j++)
-        {
-            if (s[j] > s[j + 1])
-            {
-                temp = s[j];
-                s[j] = s[j + 1];
-                s[j + 1] = temp;
-            }
-        }
-    }
-    printf(" The order of the billed students will be :\n");
-    for (i = 0; i <max_no; i++)
-    {
-        printf("s%d having number od gifts as:%d,\n", s[i]);
-    }
+
+struct student{
+	int no_of_gift;
+	
+	int id;
+}s[10];
+int i,j;
+
+int main(){
+	for(i=0;i<10;i++){
+		s[i].id=i+1;
+		printf("\nEnter the number of gift items for s%d: ",i+1);
+		scanf("%d",&s[i].no_of_gift);
+	}
+	
+	
+	struct student m;
+	int pos;
+	
+	for(i=0;i<10;i++){
+		m = s[i];
+		pos = i;
+		for(j=i+1;j<10;j++){
+			if(m.no_of_gift<s[j].no_of_gift){
+				m = s[j];
+				pos = j;
+			}
+		}
+		s[pos]=s[i];
+		s[i]=m;
+		printf("\nBill turn for student s%d having %d items",s[i].id,s[i].no_of_gift);
+	}
+	
+	return 0;
 }
